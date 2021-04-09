@@ -33,8 +33,20 @@ class data {
     }
 
     public function render(){
+		$grid = $this->_getGrid();
+		$item_deduction = [];
+		$item_addition = [];
+		foreach($grid as $row){
+			if( $row['type'] === "1" ){
+				$item_deduction[] = $row;
+			}
+			else{
+				$item_addition[] = $row;
+			}
+		}
         $data = [
-            'grid' => $this->_getGrid(),
+			'item_deduction' => $item_deduction,
+			'item_addition' => $item_addition,
             'list' => $this->_getList(),
             'week' => $this->_getWeek(),
         ];

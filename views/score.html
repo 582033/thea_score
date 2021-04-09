@@ -3,8 +3,15 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 		<style>
+			@page {
+				margin: 8;
+				/*A4水平打印*/
+				size: A4 landscape;
+				/*避免表格断开*/
+				page-break-after: avoid;
+			}
 			.grid {
-				width: 12%;
+				width: 17%;
 			}
 			.img-circle {
 				width:20px;
@@ -31,9 +38,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for G in grid %}
+				{% for G in item_addition %}
 				<tr>
-					<th scope="row" class="grid">{{ G.title }} <img src="/assets{{ G.icon }}" alt="" class="img-circle"></th>
+					<th scope="row" class="grid">{{ G.title }} <img src="assets{{ G.icon }}" alt="" class="img-circle"></th>
+					{% for weekday in week %}
+						<td></td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</tbody>
+			<tbody style="border-top:2px solid #b1b1b1;">
+				{% for G in item_deduction %}
+				<tr>
+					<th scope="row" class="grid">{{ G.title }} <img src="assets{{ G.icon }}" alt="" class="img-circle"></th>
 					{% for weekday in week %}
 						<td></td>
 					{% endfor %}
@@ -43,8 +60,10 @@
 		</table>
 		<ul class="list-group">
 			{% for l in list %}
-			<li class="list-group-item">{{ l.title }} <img src="/assets{{ l.icon }}" alt="" class="img-circle">: {{ l.price}}分</li>
+			<li class="list-group-item">{{ l.title }} <img src="assets{{ l.icon }}" alt="" class="img-circle">: {{ l.price}}分</li>
 			{% endfor %}
+			<li class="list-group-item">
+			</li>
 		</ul>
 	</body>
 </html>
