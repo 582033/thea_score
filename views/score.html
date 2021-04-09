@@ -1,0 +1,50 @@
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+		<style>
+			.grid {
+				width: 12%;
+			}
+			.img-circle {
+				width:20px;
+			}
+			.list-group{
+				display: grid !important;
+				grid-template-columns: repeat(4, 1fr);
+				grid-gap: 0em;
+			}
+			.list-group-item {
+				border-width:0px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th scope="col"></th>
+					{% for weekday in week %}
+						<th scope="col">{{ weekday }}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for G in grid %}
+				<tr>
+					<th scope="row" class="grid">{{ G.title }} <img src="/assets{{ G.icon }}" alt="" class="img-circle"></th>
+					{% for weekday in week %}
+						<td></td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<ul class="list-group">
+			{% for l in list %}
+			<li class="list-group-item">{{ l.title }} <img src="/assets{{ l.icon }}" alt="" class="img-circle">: {{ l.price}}分</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>
